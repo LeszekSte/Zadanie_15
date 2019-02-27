@@ -18,4 +18,15 @@ public enum OrderType {
     public void printOrderType() {
         System.out.println(descripton);
     }
+
+    public int compare(OrderType status) {
+
+        return 0;
+
+   }
+    public int compare(Order o1, Order o2) {
+        return -(o1.getStatus().compare(o2.getStatus()));
+    }
+
 }
+

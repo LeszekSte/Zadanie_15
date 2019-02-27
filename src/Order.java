@@ -1,10 +1,12 @@
+import java.util.Objects;
+
 public class Order {
     int id;
     String name;
     double price;
-    String status;
+    OrderType status;
 
-    public Order(int id, String name, double price, String status) {
+    public Order(int id, String name, double price, OrderType status) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -35,12 +37,28 @@ public class Order {
         this.price = price;
     }
 
-    public String getStatus() {
+    public OrderType getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(OrderType status) {
         this.status = status;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Order order = (Order) o;
+        return id == order.id &&
+                Double.compare(order.price, price) == 0 &&
+                Objects.equals(name, order.name) &&
+                status == order.status;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, price, status);
     }
 
     @Override
@@ -50,6 +68,7 @@ public class Order {
                 ", name='" + name + '\'' +
                 ", price=" + price +
                 ", status='" + status + '\'' +
-                '}';
+                "}\n";
     }
+
 }
